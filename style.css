@@ -70,34 +70,34 @@ li {
   margin: 0 auto;
 }
 
-.todo-list-board {
+.todo-list-bottom {
   text-align: center;
 }
 
-.todo-list-board__input {
+.todo-list-input {
   margin-bottom: 15px;
 }
 
-.todo-list-board__input input {
+.todo-list-input input {
   width: 250px;
   padding: 5px;
   border: 1px solid #000;
   border-radius: 20px;
 }
 
-.todo-list-board__input button {
+.todo-list-input button {
   border: 1px solid #000;
   border-radius: 20px;
   padding: 5px;
   font-size: 16px;
 }
 
-.todo-list-board__input button:hover {
+.todo-list-input button:hover {
   background-color: #000;
   color: #fff;
 }
 
-.todo-list-board__list {
+.todo-list-board {
   height: 200px;
   text-align: left;
 }
