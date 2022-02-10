@@ -3,39 +3,55 @@
 const input = document.querySelector('.todo-input');
 const addButton = document.querySelector('.todo-add-button');
 const todoBoard = document.querySelector('.todo-list-board');
-const checkButton = document.querySelector('.todo-check-button');
 
 addButton.addEventListener('click', () => {
     onAdd();
 })
 
 function onAdd() {
-    // input 값 받아오기
+    // 1. 사용자가 입력한 텍스트를 받아옴
     const data = input.value;
 
-    // input 값으로 리스트 만들어서 변수에 할당해주기
+    // input 값으로 새로운 리스트 만든다(텍스트 + 삭제버튼)
     const list = makeList(data);
 
     // 만든 list list board에 할당해주기
     todoBoard.appendChild(list);
 
+    // 인풋을 초기화 한다. 
     input.value = '';
     input.focus();
 }
 
 function makeList(data) {
-    let lists = document.createElement('li');
-    lists.classList.add('todo-list-board__data');
-    lists.innerHTML = `
-    <button type="button" class="todo-check-button">
-        <i class="far fa-circle"></i>
-    </button>
-    <span>
-        ${data}
-    </span>`;
+    // li태그 리스트 만들기 
+    const listRow = document.createElement('li');
+    listRow.classList.add('todo-list-board__data');
+
+
+    const checkButton = document.createElement('button');
+    checkButton.classList.add('todo-check-button');
+    checkButton.innerHTML ='<i class="far fa-circle"></i>';
+    checkButton.addEventListener('click', () => {
+        checkButton.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+        span.style.color = 'grey';
+        wordStroke.style.display = 'block';
+    })
+
+    const span = document.createElement('span');
+    span.innerText = data;
+
+    const wordStroke = document.createElement('div');
+    wordStroke.classList.add('todo-list-stroke');
+
+    listRow.appendChild(checkButton);
+    listRow.appendChild(span);
+    listRow.appendChild(wordStroke);
+
     // return 안해줘서 오류남
-    return lists;
+    return listRow;
 }
+
 
 
 

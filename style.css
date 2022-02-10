@@ -104,6 +104,7 @@ li {
 }
 
 .todo-list-board__data {
+  position: relative;
   margin-bottom: 10px;
   padding-left: 2.28571429em;
   text-indent: -2.18571429em;
@@ -111,4 +112,14 @@ li {
 
 .todo-list-board__data button {
   font-size: 20px;
+}
+
+.todo-list-stroke {
+  width: 270px;
+  height: 2px;
+  background-color: #000;
+  position: absolute;
+  top: 55%;
+  left: 10%;
+  display: none;
 }
