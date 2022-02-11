@@ -8,6 +8,12 @@ addButton.addEventListener('click', () => {
     onAdd();
 })
 
+window.addEventListener('keyup', (event) => {
+    if(event.key == 'Enter') {
+        onAdd();
+    }
+})
+
 function onAdd() {
     // 1. 사용자가 입력한 텍스트를 받아옴
     const data = input.value;
