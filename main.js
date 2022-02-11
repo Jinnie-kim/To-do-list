@@ -9,7 +9,7 @@ addButton.addEventListener('click', () => {
 })
 
 window.addEventListener('keyup', (event) => {
-    if(event.key == 'Enter') {
+    if(event.key === 'Enter') {
         onAdd();
     }
 })
@@ -17,12 +17,19 @@ window.addEventListener('keyup', (event) => {
 function onAdd() {
     // 1. 사용자가 입력한 텍스트를 받아옴
     const data = input.value;
+    if(data === '') {
+        input.focus();  
+        return;
+    }
 
     // input 값으로 새로운 리스트 만든다(텍스트 + 삭제버튼)
     const list = makeList(data);
 
     // 만든 list list board에 할당해주기
     todoBoard.appendChild(list);
+
+    // 새로 추가된 아이템으로 스크롤링
+    list.scrollIntoView({block: 'center'});
 
     // 인풋을 초기화 한다. 
     input.value = '';
