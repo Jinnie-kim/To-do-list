@@ -3,19 +3,27 @@
 const input = document.querySelector('.todo-input');
 const addButton = document.querySelector('.todo-add-button');
 const todoBoard = document.querySelector('.todo-list-board');
+const form = document.querySelector('.new-form');
 
-addButton.addEventListener('click', () => {
+// addButton.addEventListener('click', () => {
+//     onAdd();
+// })
+
+// window.addEventListener('keydown', (event) => {
+//     if(event.isComposing) {
+//         return;
+//     }
+//     if(event.key === 'Enter') {
+//         onAdd();
+//     }
+// })
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
     onAdd();
-})
+}
+)
 
-window.addEventListener('keydown', (event) => {
-    if(event.isComposing) {
-        return;
-    }
-    if(event.key === 'Enter') {
-        onAdd();
-    }
-})
 
 
 todoBoard.addEventListener('click', (event) => {
