@@ -8,11 +8,24 @@ addButton.addEventListener('click', () => {
     onAdd();
 })
 
-window.addEventListener('keyup', (event) => {
+window.addEventListener('keydown', (event) => {
+    if(event.isComposing) {
+        return;
+    }
     if(event.key === 'Enter') {
         onAdd();
     }
 })
+
+
+todoBoard.addEventListener('click', (event) => {
+    const id = event.target.dataset.id;
+    if(id) {
+        const toBeDeleted = document.querySelector(`.todo-list-board__data[data-id="${id}"]`);
+        toBeDeleted.remove();
+    }
+})
+
 
 function onAdd() {
     // 1. 사용자가 입력한 텍스트를 받아옴
@@ -21,7 +34,6 @@ function onAdd() {
         input.focus();  
         return;
     }
-
     // input 값으로 새로운 리스트 만든다(텍스트 + 삭제버튼)
     const list = makeList(data);
 
@@ -36,35 +48,28 @@ function onAdd() {
     input.focus();
 }
 
+let id = 0;
 function makeList(data) {
     // li태그 리스트 만들기 
     const listRow = document.createElement('li');
     listRow.classList.add('todo-list-board__data');
+    listRow.setAttribute('data-id', id);
 
+    listRow.innerHTML =`
+        <button type="button" class="todo-check-button">
+        <i class="fa-solid fa-square-minus" data-id=${id}></i>
+        </button>
+        <span>
+            ${data}
+        </span>
+        <div class="todo-list-stroke"></div>
+    `;
 
-    const checkButton = document.createElement('button');
-    checkButton.classList.add('todo-check-button');
-    checkButton.innerHTML ='<i class="far fa-circle"></i>';
-    checkButton.addEventListener('click', () => {
-        checkButton.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
-        span.style.color = 'grey';
-        wordStroke.style.display = 'block';
-    })
-
-    const span = document.createElement('span');
-    span.innerText = data;
-
-    const wordStroke = document.createElement('div');
-    wordStroke.classList.add('todo-list-stroke');
-
-    listRow.appendChild(checkButton);
-    listRow.appendChild(span);
-    listRow.appendChild(wordStroke);
+    id++;
 
     // return 안해줘서 오류남
     return listRow;
 }
-
 
 
 
